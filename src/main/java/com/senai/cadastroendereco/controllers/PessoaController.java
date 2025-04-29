@@ -51,5 +51,16 @@ import com.senai.cadastroendereco.services.PessoaService;
 	    public Pessoa buscarPorEmail(@PathVariable String email) {
 	        return pessoaService.buscarPorEmail(email);
 	    }
+	    // MÉTODO DE LOGIN
+	    @PostMapping("/login")
+	    public Pessoa login(@RequestBody Pessoa loginRequest) {
+	    	// CHAMA O SERVIÇO PARA VERIFICAR AS CREDENCIAIS
+	    	Pessoa pessoa = pessoaService.autenticarPessoa(loginRequest.getEmail(), loginRequest.getSenha());
+	    	if (pessoa != null ) {
+	    		return pessoa;
+	    	}else {
+	    		return null;
+	    	}
+	    }
 
 	}
